@@ -209,7 +209,7 @@ class Robot : public ModularRobot {
         shooter.run();
     }
 
-    // Get current time: frc::Timer::GetFPGATimestamp(). It returns a weird unit so cast to long.
+    // Get current time: . It returns a weird unit so cast to long.
     // Run drivetrain: read Drive.hpp. The Drivetrain object is named "drive"
 
     void BeginAutonomous(){

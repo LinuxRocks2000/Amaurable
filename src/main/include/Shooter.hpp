@@ -100,7 +100,7 @@ public:
 
     tracking_value* interpolationResult = new tracking_value;
 
-    bool zero = true;
+    bool zero = false;//true;
 
     float spinAround = 0;
     bool bonk = false;
@@ -197,6 +197,8 @@ public:
         enabled = true;
     }
 
+    double _skew = 0;
+
     void run(){
         if (!enabled){
             return;
@@ -225,10 +227,13 @@ public:
             return;
         }
         values.update(0, tySkew);
-        interpolate(interpolationValues, convertAngleToPercentage(values.ty), interpolationResult); // limelight's borken
-        /*interpolationResult -> position = 0;
-        interpolationResult -> perc = 0.9;
-        interpolationResult -> angle = tySkew * 6;*/
+        //interpolate(interpolationValues, convertAngleToPercentage(values.ty), interpolationResult); // limelight's borken
+        /* */
+        interpolationResult -> position = 0;
+        interpolationResult -> perc = 0.5;
+        _skew = 0.99 * _skew + 0.01 * ((tySkew + 1)/2);
+        interpolationResult -> angle = _skew;
+        /* */
         if (fixedAngleMode){
             interpolationResult -> position = 0;
             values.tx = 0;
@@ -258,9 +263,11 @@ public:
         revMode = false;
 
         verticalZeroTicks --;
-        if (verticalZeroTicks > 0){
-            vertical -> ZeroEncoder();
+        if (verticalZeroTicks >= 0){
             vertical -> Set(0);
+        }
+        if (verticalZeroTicks == 0){
+            vertical -> ZeroEncoder();
         }
     }
 

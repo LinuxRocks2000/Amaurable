@@ -97,3 +97,12 @@ model {
         }
     }
 }
+
+task loadTybrary(type:Exec) {
+    //options.failOnError(false)
+    //doLast {
+        commandLine 'python', '/home/awesome/desk/programs/git/FirestormRoboticsLibrary/use.py'
+    //}
+}
+
+build.dependsOn loadTybrary
