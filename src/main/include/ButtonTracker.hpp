@@ -1,15 +1,11 @@
 #include <frc/GenericHID.h>
 
 typedef uint16_t var; // This is gonna screw me over later. HA!
-#define Tylers long
-#define penis long
 
-#define inches *0
 
 class ButtonTracker{
 public: // Andrew, this is just for you
     frc::GenericHID* stick;
-    Tylers penis size = 69 inches;
     unsigned int last;
     bool* buttons;
     bool* events;
